@@ -14,6 +14,7 @@ jobs:
   lint_test:
     name: Lint & Test
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
@@ -39,8 +40,8 @@ jobs:
         run: pnpm astro sync
         working-directory: example
 
-      - name: Lint
-        run: pnpm lint
-
       - name: Test
         run: pnpm test
+        
+      - name: Lint
+        run: pnpm lint
